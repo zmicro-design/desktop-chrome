@@ -75,11 +75,8 @@ install() {
     # generate url
     local url=""
     case $arch in
-    arm64)
-      url="${DESKTOP_CORE_RELEASE_DOWNLOAD}/${DESKTOP_CORE_VERSION}/ClashZ-${DESKTOP_CORE_VERSION#v}-arm64.dmg"
-      ;;
-    amd64)
-      url="${DESKTOP_CORE_RELEASE_DOWNLOAD}/${DESKTOP_CORE_VERSION}/ClashZ-${DESKTOP_CORE_VERSION#v}.dmg"
+    arm64 | amd64)
+      url="https://dl.google.com/chrome/mac/universal/stable/CHFA/googlechrome.dmg"
       ;;
     *)
       log::error "[$(timestamp)] unsupport arch: $arch"
@@ -99,7 +96,7 @@ install() {
   log::info "[$(timestamp)][desktop][$name] installing $cache_file ..."
   case $arch in
   arm64 | amd64)
-    install::dmg $cache_file ${name} "${app_name}" "/Volumes/ClashZ ${DESKTOP_CORE_VERSION#v}"
+    install::dmg $cache_file ${name} "${app_name}" "/Volumes/Google Chrome"
     # install::zip $cache_file iTerm2 iTerm.app
     ;;
   *)
